@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../ducks/userReducer";
+import { logout } from "../../ducks/userReducer";
+import { getTodo } from '../../ducks/toDoReducer'
 
 class ToDo extends Component {
   constructor() {
     super();
 
     this.state = {};
+  }
+
+  componentDidMount = () => {
+    this.props.getTodo(this.props.user.user_id)
   }
 
   componentDidUpdate = prevProps => {
@@ -22,6 +27,7 @@ class ToDo extends Component {
 
   render() {
     if (!this.props.user.loggedIn) return <Redirect to="/" />;
+    console.log(this.props.user.user_id)
     return (
       <div>
         <nav>
@@ -43,5 +49,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, getTodo }
 )(ToDo);

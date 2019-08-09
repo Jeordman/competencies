@@ -6,7 +6,7 @@ const session = require("express-session"); //us for expression
 
 //controllers
 const td = require("./controllers/toDoController");
-const uc = require('./controllers/userController')
+const uc = require("./controllers/userController");
 
 //require controllers
 
@@ -28,13 +28,17 @@ massive(CONNECTION_STRING).then(db => {
   console.log("Database connected");
 });
 
+// app.use(express.static(__dirname + "/../build")); //send full build
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../build/index.html"));
+// }); when built
+
 //endpoints
-app.post('/api/signup', uc.signup)
-app.post('/api/login', uc.login)
-app.delete('/api/logout', uc.logout)
+app.post("/api/signup", uc.signup);
+app.post("/api/login", uc.login);
+app.delete("/api/logout", uc.logout);
 
-
-app.get("api/getToDo", td.getToDo);
+app.get(`/api/getTodo/`, td.getToDo);
 
 app.listen(SERVER_PORT, () =>
   console.log(`this server... it's over ${SERVER_PORT}`)
