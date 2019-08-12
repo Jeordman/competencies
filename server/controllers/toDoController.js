@@ -11,8 +11,9 @@ module.exports = {
     return res.status(200).send(toDo);
   },
 
-  async editTodo(req, res){
-    const {todo_id, todo_id, item} = req.body
-    //continue here
+  async editTodo(req, res) {
+    const { user_id, todo_id, item } = req.body;
+    const toDo = await req.app.get("db").edit_todo(user_id, todo_id, item);
+    return res.status(200).send(toDo);
   }
 };

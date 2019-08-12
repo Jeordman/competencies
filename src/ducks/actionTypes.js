@@ -4,3 +4,4 @@ export const LOGOUT = "LOGOUT";
 
 export const GET_TODO = "GET_TODO";
 export const ADD_TO_DO = "ADD_TO_DO";
+export const EDIT_TO_DO = "EDIT_TO_DO";

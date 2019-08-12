@@ -40,6 +40,7 @@ app.delete("/api/logout", uc.logout);
 
 app.get(`/api/getTodo/`, td.getToDo);
 app.post(`/api/addToDo`, td.addToDo);
+app.put(`/api/editTodo`, td.editTodo)
 
 app.listen(SERVER_PORT, () =>
   console.log(`this server... it's over ${SERVER_PORT}`)
