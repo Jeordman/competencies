@@ -1,4 +1,4 @@
-import { GET_TODO } from "./actionTypes";
+import { GET_TODO, ADD_TO_DO } from "./actionTypes";
 import axios from "axios";
 
 let initialState = {
@@ -15,10 +15,22 @@ export const getTodo = user_id => {
   };
 };
 
+export const addToDo = (user_id, item) => {
+  let fullList = axios
+    .post(`/api/addToDo`, { user_id, item })
+    .then(res => res.data);
+  return {
+    type: ADD_TO_DO,
+    payload: fullList
+  };
+};
+
 export default function(state = initialState, action) {
   let { type, payload } = action;
   switch (type) {
     case GET_TODO + "_FULFILLED":
+      return { ...state, toDo: payload };
+    case ADD_TO_DO + "_FULFILLED":
       return { ...state, toDo: payload };
     default:
       return state;

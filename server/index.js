@@ -39,6 +39,7 @@ app.post("/api/login", uc.login);
 app.delete("/api/logout", uc.logout);
 
 app.get(`/api/getTodo/`, td.getToDo);
+app.post(`/api/addToDo`, td.addToDo);
 
 app.listen(SERVER_PORT, () =>
   console.log(`this server... it's over ${SERVER_PORT}`)

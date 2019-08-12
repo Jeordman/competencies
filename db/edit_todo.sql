@@ -1,6 +1,6 @@
 update todo
-set item = $2
-where todo_id = $1;
+set item = $3
+where todo_id = $2;
 
 select *
 from todo
