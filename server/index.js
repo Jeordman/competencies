@@ -8,7 +8,8 @@ const session = require("express-session"); //us for expression
 const td = require("./controllers/toDoController");
 const uc = require("./controllers/userController");
 
-//require controllers
+//middleware
+const authCheck = require("./middleware/authCheck");
 
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 const app = express();
@@ -38,9 +39,10 @@ app.post("/api/signup", uc.signup);
 app.post("/api/login", uc.login);
 app.delete("/api/logout", uc.logout);
 
-app.get(`/api/getTodo/`, td.getToDo);
-app.post(`/api/addToDo`, td.addToDo);
-app.put(`/api/editTodo`, td.editTodo)
+app.get(`/api/getTodo/`, authCheck, td.getToDo);
+app.post(`/api/addToDo`, authCheck, td.addToDo);
+app.put(`/api/editTodo`, authCheck, td.editTodo);
+app.delete(`/api/deleteTodo/:user_id`, authCheck, td.deleteTodo);
 
 app.listen(SERVER_PORT, () =>
   console.log(`this server... it's over ${SERVER_PORT}`)

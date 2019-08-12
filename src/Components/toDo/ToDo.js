@@ -5,6 +5,7 @@ import { logout } from "../../ducks/userReducer";
 import { getTodo, addToDo } from "../../ducks/toDoReducer";
 import "../specificItem/SpecificItem";
 import SpecificItem from "../specificItem/SpecificItem";
+import './toDo.css'
 
 class ToDo extends Component {
   constructor() {
@@ -45,7 +46,7 @@ class ToDo extends Component {
     return (
       <div>
         <nav>
-          <button onClick={this.handleLogout}>Logout</button>
+          <button onClick={this.handleLogout} className='logout-button'>Logout</button>
         </nav>
         <section />
         {this.props.toDo.map(obj => {

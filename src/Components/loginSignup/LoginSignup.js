@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { signup, login } from "../../ducks/userReducer";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+import "./loginSignup.css";
 
 class LoginSignup extends Component {
   constructor() {
@@ -42,22 +43,24 @@ class LoginSignup extends Component {
     if (this.props.user.loggedIn) return <Redirect to="/todo" />;
     return (
       <div>
-        <div>this is login</div>
-        <input
-          type="text"
-          name="username"
-          placeholder="username"
-          onChange={this.handleInput}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={this.handleInput}
-        />
-
-        <button onClick={this.handleLogin}>login</button>
-        <button onClick={this.handleSignup}>signup</button>
+        <div className="input-holder">
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            onChange={this.handleInput}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            onChange={this.handleInput}
+          />
+        </div>
+        <div className="button-holder">
+          <button onClick={this.handleLogin}>login</button>
+          <button onClick={this.handleSignup}>signup</button>
+        </div>
       </div>
     );
   }

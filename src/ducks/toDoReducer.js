@@ -1,4 +1,4 @@
-import { GET_TODO, ADD_TO_DO, EDIT_TO_DO } from "./actionTypes";
+import { GET_TODO, ADD_TO_DO, EDIT_TO_DO, DELETE_TODO } from "./actionTypes";
 import axios from "axios";
 
 let initialState = {
@@ -27,13 +27,23 @@ export const addToDo = (user_id, item) => {
 
 export const editTodo = (user_id, todo_id, item) => {
   let fullList = axios
-  .put(`/api/editTodo`, {user_id, todo_id, item})
-  .then(res => res.data)
+    .put(`/api/editTodo`, { user_id, todo_id, item })
+    .then(res => res.data);
   return {
     type: EDIT_TO_DO,
     payload: fullList
-  }
-}
+  };
+};
+
+export const deleteTodo = (user_id, todo_id) => {
+  let fullList = axios
+    .delete(`/api/deleteTodo/${user_id}?todo_id=${todo_id}`)
+    .then(res => res.data);
+  return {
+    type: DELETE_TODO,
+    payload: fullList
+  };
+};
 
 export default function(state = initialState, action) {
   let { type, payload } = action;
@@ -42,8 +52,10 @@ export default function(state = initialState, action) {
       return { ...state, toDo: payload };
     case ADD_TO_DO + "_FULFILLED":
       return { ...state, toDo: payload };
-    case EDIT_TO_DO + '_FULFILLED': 
-      return { ...state, toDo: payload}
+    case EDIT_TO_DO + "_FULFILLED":
+      return { ...state, toDo: payload };
+    case DELETE_TODO + "_FULFILLED":
+      return { ...state, toDo: payload };
     default:
       return state;
   }

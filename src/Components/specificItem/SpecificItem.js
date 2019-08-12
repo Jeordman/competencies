@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { editTodo } from "../../ducks/toDoReducer";
+import { editTodo, deleteTodo } from "../../ducks/toDoReducer";
+import { Link } from "react-router-dom";
 
 class SpecificItem extends Component {
   constructor(props) {
@@ -27,7 +28,11 @@ class SpecificItem extends Component {
       this.props.obj.todo_id,
       this.state.item
     );
-    this.setState({ editing: true });
+    this.setState({ editing: false });
+  };
+
+  delete = () => {
+    this.props.deleteTodo(this.props.obj.user_id, this.props.obj.todo_id);
   };
 
   render() {
@@ -38,6 +43,10 @@ class SpecificItem extends Component {
         <div>
           <div>{`${item}`}</div>
           <button onClick={this.edit}>Edit</button>
+          <button onClick={this.delete}>Delete</button>
+          <Link to={`/listItem/${this.props.obj.todo_id}`}>
+            <button>Go to item</button>
+          </Link>
         </div>
       );
     } else if (this.state.editing === true) {
@@ -48,7 +57,6 @@ class SpecificItem extends Component {
             onChange={this.handleInput}
             name="item"
           />
-          <div>{`${item}`}</div>
           <button onClick={this.saveChanges}>Save Changes</button>
         </div>
       );
@@ -64,5 +72,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { editTodo }
+  { editTodo, deleteTodo }
 )(SpecificItem);

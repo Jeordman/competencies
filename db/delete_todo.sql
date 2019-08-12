@@ -1,5 +1,5 @@
 delete from todo 
-where todo_id = $1;
+where todo_id = $2;
 
 select *
 from todo

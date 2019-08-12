@@ -1,0 +1,11 @@
+nav {
+  width: 100vw;
+  height: 10vh;
+  margin-bottom: 20vh;
+  position: fixed;
+  background-color: cyan;
+}
+
+.logout-button{
+    float: right;
+}

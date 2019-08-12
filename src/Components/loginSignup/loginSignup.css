@@ -1,0 +1,14 @@
+.input-holder {
+  display: flex;
+  position: relative;
+  margin-top: 20vh;
+  margin-bottom: 2vh;
+  justify-content: space-around;
+}
+
+.button-holder {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  margin: 0 auto;
+}
